@@ -10,9 +10,9 @@ const credentials = {
   client_secret: process.env.CLIENT_SECRET,
   calendar_id: process.env.CALENDAR_ID,
   auth_uri: "https://acounts.google.com/o/oauth2/auth",
-  teken_uri: "https://oauth2.googleapis.com/token",
+  token_uri: "https://oauth2.googleapis.com/token",
   auth_provider_x509_cert_url: "https://www.googleapis.com/oauth2/v1/certs",
-  redirect_uris: ["https://Bjaguar71.github.io/MeetApp/"],
+  redirect_uris: ["https://Bjaguar71.github.io", "http://localhost:3000"],
   javascript_origins: ["https://Bjaguar71.github.io", "http://localhost:3000"],
 };
 
@@ -39,3 +39,4 @@ module.exports.getAuthURL = async () => {
     }),
   };
 ;}
+ 
