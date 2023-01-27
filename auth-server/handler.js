@@ -12,8 +12,8 @@ const credentials = {
   auth_uri: "https://acounts.google.com/o/oauth2/auth",
   token_uri: "https://oauth2.googleapis.com/token",
   auth_provider_x509_cert_url: "https://www.googleapis.com/oauth2/v1/certs",
-  redirect_uris: ["https://Bjaguar71.github.io", "http://localhost:3000"],
-  javascript_origins: ["https://Bjaguar71.github.io", "http://localhost:3000"],
+  redirect_uris: ["https://meet-me-there.netlify.app/", "http://localhost:3000"],
+  javascript_origins: ["https://meet-me-there.netlify.app/", "http://localhost:3000"],
 };
 
 const { client_secret, client_id, redirect_uris, calendar_id } = credentials;
