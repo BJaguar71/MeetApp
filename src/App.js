@@ -9,6 +9,7 @@ function App() {
         <img src={logo} className="App-logo" alt="logo" />
         <p>
         This is an app for finding events in the city to join!
+        I hope you enjoy it!
         </p>
         <a
           className="App-link"
