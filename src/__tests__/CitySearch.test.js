@@ -60,3 +60,22 @@ describe("<CitySearch /> component", () =>{
     }
   });
 
+  test("suggestion list match the query when changed", () => {
+
+    CitySearchWrapper.setState({ query: " ", suggestions: [] });
+
+    CitySearchWrapper.find(".city").simulate("change", 
+    {
+      target: { value: "Berlin"},
+    });
+
+    const query = CitySearchWrapper.state("query");
+
+    const filteredLocations = locations.filter((location) => {
+      return location.toUpperCase().indexOf(query.toUpperCase()) > -1;
+    });
+
+    // use toEqual func to compare two arrays (complex data type)
+    expect(CitySearchWrapper.state("suggestions")).toEqual(filteredLocations);
+  });
+
