@@ -44,3 +44,19 @@ describe("<CitySearch /> component", () =>{
     expect(CitySearchWrapper.state("query")).toBe("Berlin");
   });
 
+  test("render list of sugestions correctly", () => {
+    // define a var containing different locations from the mockData events list/ extraction will be done by using the extractLocation func
+    const locations = extractLocations(mockData);
+
+    // set the suggestions state to full list of mock locations
+    CitySearchWrapper.setState({ suggestions: locations });
+    const suggestions = CitySearchWrapper.state("suggestions");
+    // compare the number of rendered suggestions to the number of suggestions in the state of CitySearch
+    // the rendered text is checked to ensure that it’s also been taken from state
+    expect(CitySearchWrapper.find(".suggestions li")).toHaveLength(suggestions.length + 1);
+    // loop through all the suggestions and compare the items in suggestions one by one
+    for (let i = 0; i < suggestions.length; i += 1) {
+      expect(CitySearchWrapper.find(".suggestions li").at(i).text()).toBe(suggestions[i]);
+    }
+  });
+
