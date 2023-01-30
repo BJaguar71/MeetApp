@@ -8,3 +8,8 @@ import { extractLocations } from "../api";
 describe("<CitySearch /> component", () =>{
   let locations, CitySearchWrapper; 
   beforeAll(() => {
+    // define a superset of all locations to be used to filter locations against query to set the suggestions state
+    let locations = extractLocations(mockData);
+    CitySearchWrapper = shallow(<CitySearch locations={locations} />);
+  });
+
