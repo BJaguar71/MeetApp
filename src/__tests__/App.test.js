@@ -14,3 +14,8 @@ describe("<App /> component", () => {
     AppWrapper = shallow(<App />);
   })
 
+  // firts scenario - show all events
+  test("render list of all events", () => {
+    expect(AppWrapper.find(EventList)).toHaveLength(1);
+  });
+
