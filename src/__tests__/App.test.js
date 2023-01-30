@@ -19,3 +19,8 @@ describe("<App /> component", () => {
     expect(AppWrapper.find(EventList)).toHaveLength(1);
   });
 
+  // second scenario / seacrh for a city
+  test("render CitySearch", () => {
+    expect(AppWrapper.find(CitySearch)).toHaveLength(1);
+  });
+});
