@@ -8,3 +8,9 @@ import CitySearch from "../CitySearch";
 
 // testing scope starts from here
 describe("<App /> component", () => {
+  // in order to shallow rendering the component:
+  let AppWrapper;
+  beforeAll(() => {
+    AppWrapper = shallow(<App />);
+  })
+
