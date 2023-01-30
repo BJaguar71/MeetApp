@@ -31,3 +31,16 @@ describe("<CitySearch /> component", () =>{
     expect(CitySearchWrapper.find(".city").prop("value")).toBe(query);
   });
 
+  test("change state when text input changes/ when the user write a different city", () => {
+    // the query state is set to Munich
+    CitySearchWrapper.setState({
+      query: "Berlin",
+    });
+    // the eventObject changes its value to berlin once the change event is called
+    const eventObject = { target: { value: "Berlin" }};
+    // simulate change to the city into the target value "Berlin"
+    CitySearchWrapper.find(".city").simulate("change", eventObject);
+    // comparing the value of query with "Berlin"
+    expect(CitySearchWrapper.state("query")).toBe("Berlin");
+  });
+
