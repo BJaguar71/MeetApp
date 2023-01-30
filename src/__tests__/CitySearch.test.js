@@ -22,3 +22,12 @@ describe("<CitySearch /> component", () =>{
     expect(CitySearchWrapper.find(".suggestions")).toHaveLength(1);
   });
 
+  test("render text input correctly", () => {
+    // define and set the query element from CitySearch state
+    // the query that user types into the textbox
+    const query = CitySearchWrapper.state("query");
+    // compare the value prop of each elemet with "city" class, found within CitySearch Component
+    // it will also check if the input field's value prop is equal to the query state in CitySearch
+    expect(CitySearchWrapper.find(".city").prop("value")).toBe(query);
+  });
+
