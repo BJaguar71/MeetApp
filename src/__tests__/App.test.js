@@ -6,3 +6,5 @@ import App from "../App";
 import EventList from "../EventList";
 import CitySearch from "../CitySearch";
 
+// testing scope starts from here
+describe("<App /> component", () => {
