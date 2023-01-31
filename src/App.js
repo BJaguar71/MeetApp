@@ -1,7 +1,7 @@
-import React from 'react';
-import './App.css';
-import EventList from './EventList';
-import CitySearch from './CitySearch';
+import React from "react";
+import "./App.css";
+import EventList from "./EventList";
+import CitySearch from "./CitySearch";
 
 function App() {
   return (

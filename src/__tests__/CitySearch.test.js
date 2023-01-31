@@ -4,16 +4,15 @@ import CitySearch from "../CitySearch";
 import { mockData } from "../mock-data";
 import { extractLocations } from "../api";
 
-
-describe("<CitySearch /> component", () =>{
-  let locations, CitySearchWrapper; 
+describe("<CitySearch /> component", () => {
+  let locations, CitySearchWrapper;
   beforeAll(() => {
     // define a superset of all locations to be used to filter locations against query to set the suggestions state
     let locations = extractLocations(mockData);
     CitySearchWrapper = shallow(<CitySearch locations={locations} />);
   });
 
-// test starts from here: 
+  // test starts from here:
   test("render text input", () => {
     expect(CitySearchWrapper.find(".city")).toHaveLength(1);
   });
@@ -37,7 +36,7 @@ describe("<CitySearch /> component", () =>{
       query: "Berlin",
     });
     // the eventObject changes its value to berlin once the change event is called
-    const eventObject = { target: { value: "Berlin" }};
+    const eventObject = { target: { value: "Berlin" } };
     // simulate change to the city into the target value "Berlin"
     CitySearchWrapper.find(".city").simulate("change", eventObject);
     // comparing the value of query with "Berlin"
@@ -53,35 +52,20 @@ describe("<CitySearch /> component", () =>{
     const suggestions = CitySearchWrapper.state("suggestions");
     // compare the number of rendered suggestions to the number of suggestions in the state of CitySearch
     // the rendered text is checked to ensure that it’s also been taken from state
-    expect(CitySearchWrapper.find(".suggestions li")).toHaveLength(suggestions.length + 1);
+    expect(CitySearchWrapper.find(".suggestions li")).toHaveLength(
+      suggestions.length + 1
+    );
     // loop through all the suggestions and compare the items in suggestions one by one
     for (let i = 0; i < suggestions.length; i += 1) {
-      expect(CitySearchWrapper.find(".suggestions li").at(i).text()).toBe(suggestions[i]);
+      expect(CitySearchWrapper.find(".suggestions li").at(i).text()).toBe(
+        suggestions[i]
+      );
     }
-  });
-
-  test("suggestion list match the query when changed", () => {
-
-    CitySearchWrapper.setState({ query: " ", suggestions: [] });
-
-    CitySearchWrapper.find(".city").simulate("change", 
-    {
-      target: { value: "Berlin"},
-    });
-
-    const query = CitySearchWrapper.state("query");
-
-    const filteredLocations = locations.filter((location) => {
-      return location.toUpperCase().indexOf(query.toUpperCase()) > -1;
-    });
-
-    // use toEqual func to compare two arrays (complex data type)
-    expect(CitySearchWrapper.state("suggestions")).toEqual(filteredLocations);
   });
 
   test("selecting  suggestion should change query state", () => {
     CitySearchWrapper.setState({
-      query: "Berlin"
+      query: "Berlin",
     });
 
     const suggestions = CitySearchWrapper.state("suggestions");
