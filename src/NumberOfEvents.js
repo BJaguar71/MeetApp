@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import "./App.css";
 
 class NumberOfEvents extends Component {
   // initial state when user doesn't specify the number of events
@@ -23,7 +24,7 @@ class NumberOfEvents extends Component {
           onChange={(e) => this.setState({ numberOfEvents: e.target.value })}
           value={this.state.numberOfEvents}
         />
-        <h3>Number of Events:</h3>
+        <h3 className="numOfEvent-h3">Number of Events:</h3>
         <ul className="event suggestions"></ul>
       </div>
     );

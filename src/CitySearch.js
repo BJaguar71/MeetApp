@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import "./App.css";
 // VARS and FUNCS //////////
 import { mockData } from "./mock-data";
 import { extractLocations } from "./api";
@@ -44,6 +45,7 @@ class CitySearch extends Component {
           // to detect any textual changes might have been made on the input
 
           onChange={this.handleInputChanged}
+          placeholder="write a city name"
         />
         <ul className="suggestions">
           {this.state.suggestions.map((suggestion) => (
@@ -54,8 +56,8 @@ class CitySearch extends Component {
               {suggestion}
             </li>
           ))}
-          <li>
-            <b>See all cities</b>
+          <li className="cityResult">
+            <b className="seeAll">See all cities</b>
           </li>
         </ul>
       </div>
