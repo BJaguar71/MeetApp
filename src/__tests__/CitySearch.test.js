@@ -9,7 +9,7 @@ describe("<CitySearch /> component", () => {
   beforeAll(() => {
     // define a superset of all locations to be used to filter locations against query to set the suggestions state
     let locations = extractLocations(mockData);
-    CitySearchWrapper = shallow(<CitySearch locations={locations} />);
+    CitySearchWrapper = shallow(<CitySearch locations={locations} updateEvents={() => {}}/>);
   });
 
   // test starts from here:
@@ -72,5 +72,30 @@ describe("<CitySearch /> component", () => {
     CitySearchWrapper.find(".suggestions li").at(0).simulate("click");
 
     expect(CitySearchWrapper.state("query")).toBe(suggestions[0]);
+  });
+
+  test("selecting CitySearch input reveals th suggestions list" , () => {
+    // in CitySearch comp, grab the child with the class "city" and simulate focus on it
+    CitySearchWrapper.find('.city').simulate('focus');
+
+    //  expect the value of "showSuggestions" state to be true / use the "showSuggestions" as aboolean flag to determine whether to show the suggestions list or not
+    expect(CitySearchWrapper.state("showSuggestions")).toBe(true);
+
+    expect(CitySearchWrapper.find(".suggestions").prop("style")).not.toEqual({ display: "none" });
+  });
+
+  test("selecting a suggestion should hide the suggestions list", () => {
+    CitySearchWrapper.setState({
+      query: "Berlin",
+      showSuggestions: undefined
+    });
+
+    //  find a child with the class "suggestions li" at node 0 and simulate click on it
+    CitySearchWrapper.find(".suggestions li").at(0).simulate("click");
+
+    expect(CitySearchWrapper.state("showSuggestions")).toBe(false);
+
+    //  expect the child with class "suggestions" and style prop that its display has the value none to hide the suggestions 
+    expect(CitySearchWrapper.find(".suggestions").prop("style")).toEqual({ display: "none" });
   });
 });
