@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./App.css";
+import { getEvents, extractLocations } from "./api";
 
 class NumberOfEvents extends Component {
   // initial state when user doesn't specify the number of events
@@ -12,7 +13,16 @@ class NumberOfEvents extends Component {
 
   // when user chnages the number of events to be shown
   componentDidMount() {
-    // I don't know what to write here
+    this.mounted = true;
+    getEvents().then((events) => {
+      this.setState({
+        events, locations: extractLocations(events)
+      });
+    });
+  }
+
+  componentWillUnmount() {
+    this.mounted = false;
   }
 
   render() {
