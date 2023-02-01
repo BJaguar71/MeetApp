@@ -8,6 +8,7 @@ class CitySearch extends Component {
   state = {
     query: "",
     suggestions: [],
+    showSuggestions: undefined
   };
 
   // defining event handler for input for change event
@@ -32,7 +33,11 @@ class CitySearch extends Component {
   handleItemClicked = (suggestion) => {
     this.setState({
       query: suggestion,
+      // set the state to false, whenever an item is clicked 
+      showSuggestions: false,
     });
+    //  call the updateEvents method here
+    this.props.updateEvents(suggestion);
   };
 
   render() {
@@ -45,9 +50,12 @@ class CitySearch extends Component {
           // to detect any textual changes might have been made on the input
 
           onChange={this.handleInputChanged}
+          onFocus={() => { this.setState({ showSuggestions: true }) }}
           placeholder="write a city name"
         />
-        <ul className="suggestions">
+        <ul className="suggestions"
+        // if showSuggestions is true the list will be visible otherwise style won't have display: "none" so the list won't become visible
+          style={this.state.showSuggestions ? {} : { display: "none"}} >
           {this.state.suggestions.map((suggestion) => (
             <li
               key={suggestion}
@@ -56,7 +64,7 @@ class CitySearch extends Component {
               {suggestion}
             </li>
           ))}
-          <li className="cityResult">
+          <li className="cityResult" onClick={() => this.handleItemClicked("all")}>
             <b className="seeAll">See all cities</b>
           </li>
         </ul>
