@@ -92,7 +92,7 @@ And the user should receive a list of upcoming events in that city.
 
 
 
-
+<!-- not implemented yet -->
 ### 3. Specify number of events
 **SCENARIO 1**: When user hasn’t specified a number, 32 is the default number.**
 >**User Story**: As a user, I should be able to see a list of events by default, so that I can get started searching immediately.
