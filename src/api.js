@@ -73,7 +73,7 @@ export const getEvents = async () => {
   NProgress.start();
 
   // define a condition to check if the request is made through localhost (fetch data from mockdata file) or through the app url (fetch data from GGL api)
-  if(window.location.href.startsWith("https://localhost")) {
+  if(window.location.href.startsWith("http://localhost")) {
 
     NProgress.done();
     return mockData;
