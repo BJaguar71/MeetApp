@@ -10,7 +10,7 @@ class Event extends Component {
   };
   render() {
     return (
-      <div>
+      <div className="event">
         <h2 className="summary">{this.props.event.summary}</h2>
         <p className="start">{this.props.event.start.dateTime}</p>
         <p className="location">{`Location: ${this.props.event.location}`}</p>
