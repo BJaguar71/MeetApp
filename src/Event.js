@@ -1,6 +1,8 @@
 import React, { Component } from "react";
+import "./App.css";
 
 class Event extends Component {
+  // by default the event detail should be collapsed 
   state = { collapsed: true };
   toggleDetails = () => {
     this.setState((prevState) => ({
