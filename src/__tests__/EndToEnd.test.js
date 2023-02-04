@@ -71,7 +71,7 @@ describe("filter events by city", () => {
 
   test("User should see a list of suggestions when they search for a city", async () => {
     await page.type(".city", "Berlin", { delay: 100 });
-    const numOfCities = await page.$$eval(
+    const numOfCities = await page.$eval(
       ".suggestions li",
       (element) => element.length
     );

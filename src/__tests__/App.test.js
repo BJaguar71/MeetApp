@@ -137,7 +137,7 @@ describe("<App /> integration", () => {
     const AppWrapper = mount(<App />);
     // inside the App component check if the App component have a component called NumberOfEvents
     const NumberOfEventsWrapper = AppWrapper.find(NumberOfEvents);
-    NumberOfEventsWrapper.find(".num").simulate("change", {
+    NumberOfEventsWrapper.find(".number").simulate("change", {
       target: { value: 12 },
     });
     expect(NumberOfEventsWrapper.state("numberOfEvents")).toBe(12);
@@ -148,7 +148,7 @@ describe("<App /> integration", () => {
   test("check if events match the content of the mock data", async () => {
     const AppWrapper = mount(<App />);
     const NumberOfEventsWrapper = AppWrapper.find(NumberOfEvents);
-    NumberOfEventsWrapper.find(".num").simulate("change", {
+    NumberOfEventsWrapper.find(".number").simulate("change", {
       target: { value: 10 },
     });
     await getEvents();

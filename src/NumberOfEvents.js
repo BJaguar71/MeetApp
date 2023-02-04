@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import "./App.css";
 
 class NumberOfEvents extends Component {
   // initial state when user doesn't specify the number of events
@@ -21,11 +22,11 @@ class NumberOfEvents extends Component {
     const { numberOfEvents } = this.state;
 
     return (
-      <div>
+      <div className="NumberOfEvents">
         <label>
           Number of events
           <input
-            className="num"
+            className="number"
             type="number"
             value={numberOfEvents}
             onChange={(event) => this.changeNum(event.target.value)}
