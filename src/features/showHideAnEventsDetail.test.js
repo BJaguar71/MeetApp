@@ -10,7 +10,7 @@ const feature = loadFeature(
 defineFeature(feature, (test) => {
   let AppWrapper;
   test("An event element is collapsed by default", ({ given, when, then }) => {
-    given("the event’s page was open", () => {});
+    given("the event\'s page was open", () => { });
 
     when("the user checks the page", () => {
       AppWrapper = mount(<App />);
@@ -27,7 +27,7 @@ defineFeature(feature, (test) => {
     when,
     then,
   }) => {
-    given("user wanted to see event’s details", () => {
+    given("user wanted to see event's details", () => {
       AppWrapper = mount(<App />);
     });
 
@@ -47,7 +47,7 @@ defineFeature(feature, (test) => {
     when,
     then,
   }) => {
-    given("user hasn’t searched for event’s details", async () => {
+    given("user hasn't searched for event's details", async () => {
       AppWrapper = await mount(<App />);
       AppWrapper.update();
       AppWrapper.find(".event .details-btn").at(0).simulate("click");
