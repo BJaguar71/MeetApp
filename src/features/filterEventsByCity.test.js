@@ -6,7 +6,7 @@ import { mockData } from "../mock-data";
 import CitySearch from "../CitySearch";
 import { extractLocations } from "../api";
 
-const feature = loadFeature("./src/features/filterEventsByCity.feature.txt");
+const feature = loadFeature("./src/features/filterEventsByCity.feature");
 
 defineFeature(feature, (test) => {
   test("When user hasn't searched for a city, show upcoming events from all cities.", ({

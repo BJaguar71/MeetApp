@@ -3,7 +3,7 @@ import React from "react";
 import { mount } from "enzyme";
 import App from "../App";
 
-const feature = loadFeature("./src/features/specifyNumberOfEvents.feature.txt");
+const feature = loadFeature("./src/features/specifyNumberOfEvents.feature");
 
 defineFeature(feature, (test) => {
   let AppWrapper;
