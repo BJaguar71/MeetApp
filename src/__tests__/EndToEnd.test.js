@@ -1,5 +1,7 @@
 import puppeteer from "puppeteer";
-// import { expect } from "jest-cucumber";
+import { expect } from "jest-cucumber";
+import Event from "../Event.js";
+import CitySearch from "../CitySearch.js";
 
 describe("show/hide an event details", () => {
   let browser;
@@ -12,7 +14,7 @@ describe("show/hide an event details", () => {
       slowMo: 50,
     });
     page = await browser.newPage();
-    await page.goto("http://127.0.0.1:3000/");
+    await page.goto("http://localhost:3000/");
     await page.waitForSelector(".event");
   });
 
