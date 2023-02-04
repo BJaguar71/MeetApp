@@ -61,7 +61,7 @@ describe("filter events by city", () => {
     await page.reload();
   });
 
-  test("When user hasn’t searched for a city, show upcoming events from all cities.", async () => {
+  test("When user hasn't searched for a city, show upcoming events from all cities.", async () => {
     const numOfEvents = await page.$$eval(
       ".event",
       (element) => element.length
