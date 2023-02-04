@@ -1,39 +1,36 @@
 import React from "react";
 import { shallow } from "enzyme";
-
-// components
 import NumberOfEvents from "../NumberOfEvents";
 
 describe("<NumberOfEvents /> component", () => {
   let NumberOfEventsWrapper;
   beforeAll(() => {
-    NumberOfEventsWrapper = shallow(<NumberOfEvents />);
+    NumberOfEventsWrapper = shallow(
+      <NumberOfEvents updateNumberOfEvents={() => {}} />
+    );
   });
 
-  test("render the component", () => {
-    expect(NumberOfEventsWrapper.find(".NumberOfEvents")).toBeDefined();
+  test("renders the component", () => {
+    expect(NumberOfEventsWrapper).toBeDefined();
   });
 
-  test("render the input so that user can use it to specify the number of events to be shown", () => {
-    expect(NumberOfEventsWrapper.find(".number")).toHaveLength(1);
+  test("the input should have a default value of 32", () => {
+    expect(NumberOfEventsWrapper.find("input.num").prop("type")).toBe("number");
+    expect(NumberOfEventsWrapper.state("numberOfEvents")).toBe(32);
   });
 
-  test("render the number input correctly", () => {
-    const numQuery = NumberOfEventsWrapper.state("numberOfEvents");
-    expect(NumberOfEventsWrapper.find(".number").prop("value")).toBe(numQuery);
+  test("the input should have the value given in the num prop", () => {
+    const NumberOfEventsWrapperWithProp = shallow(
+      <NumberOfEvents num={20} updateNumberOfEvents={() => {}} />
+    );
+    expect(NumberOfEventsWrapperWithProp.state("numberOfEvents")).toBe(20);
   });
 
-  test("change state when number input changes/render the number of events that user especifies", () => {
-    NumberOfEventsWrapper.setState({
-      numberOfEvents: 10,
+  test("input should change on user input", () => {
+    expect(NumberOfEventsWrapper.state("numberOfEvents")).toBe(32);
+    NumberOfEventsWrapper.find("input.num").simulate("change", {
+      target: { value: 12 },
     });
-
-    const numberOfEventsObject = {
-      target: { value: 10,}
-    };
-
-    NumberOfEventsWrapper.find(".number").simulate("change", numberOfEventsObject);
-
-    expect(NumberOfEventsWrapper.state("numberOfEvents")).toBe(10);
+    expect(NumberOfEventsWrapper.state("numberOfEvents")).toBe(12);
   });
 });

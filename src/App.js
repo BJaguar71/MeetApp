@@ -2,51 +2,75 @@ import React, { Component } from "react";
 import "./App.css";
 import EventList from "./EventList";
 import CitySearch from "./CitySearch";
-import { extractLocations, getEvents } from "./api";
-import "../src/nprogress.css";
-
-
+import NumberOfEvents from "./NumberOfEvents";
+import { extractLocations, getEvents, checkToken, getAccessToken } from "./api";
+import "./nprogress.css";
 class App extends Component {
-  // creating an state
   state = {
     events: [],
     locations: [],
-  }
+    numberOfEvents: 32,
+    showWelcomeScreen: undefined,
+  };
 
-
-  // create componentDidMount to make API call and save the initial data to state: 
-  componentDidMount() {
-    this.mounted = true;
-    getEvents().then((events) => {
-      this.setState({
-        events, locations: extractLocations(events)
-      });
-    });
-  }
-
-  // use componentWillUnmount to avoide the component to be unmounted before the API call is finished
-  componentWillUnmount() {
-    this.mounted = false;
-  }
-
-  // create a method that changes the "events" state / pass it to the CitySearch / call it inside the handleItemClicked
   updateEvents = (location) => {
     getEvents().then((events) => {
       //  filteres events that their location is equal to selected location
-      const locationEvents = (location === "all") ? events : events.filter((event) => event.location === location);
+
+      const locationEvents =
+        location === "all"
+          ? events
+          : events.filter((event) => event.location === location);
       //  set the "event" state to the the array recieved from the code above
+
       this.setState({
-        events: locationEvents
+        events: locationEvents.slice(0, this.state.numberOfEvents),
       });
     });
   };
 
+  updateNumberOfEvents(number) {
+    this.setState({
+      numberOfEvents: number,
+    });
+  }
+  // create componentDidMount to make API call and save the initial data to state:
+
+  async componentDidMount() {
+    this.mounted = true;
+    getEvents().then((events) => {
+      if (this.mounted) {
+        this.setState({
+          events: events.slice(0, this.state.numberOfEvents),
+          locations: extractLocations(events),
+        });
+      }
+    });
+  }
+  // use componentWillUnmount to avoide the component to be unmounted before the API call is finished
+
+  componentWillUnmount() {
+    this.mounted = false;
+  }
+
   render() {
-    // assigned the state into a var 'events' to simplify the value of 'event' prop 
+    // assigned the state into a var 'events' to simplify the value of 'event' prop
     const { events, locations } = this.state;
+
     return (
       <div className="App">
-        <CitySearch locations={locations} updateEvents={this.updateEvents}/>
+        <div className="filters">
+          <CitySearch
+            locations={locations}
+            updateEvents={(updatedLocation) => {
+              this.updateEvents(updatedLocation);
+            }}
+          />
+          <NumberOfEvents
+            num={this.state.numberOfEvents}
+            updateNumberOfEvents={(num) => this.updateNumberOfEvents(num)}
+          />
+        </div>
         <EventList events={events} />
       </div>
     );

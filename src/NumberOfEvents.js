@@ -1,41 +1,36 @@
 import React, { Component } from "react";
-import "./App.css";
-import { getEvents, extractLocations } from "./api";
 
 class NumberOfEvents extends Component {
   // initial state when user doesn't specify the number of events
-  constructor() {
-    super();
-    this.state = {
-      numberOfEvents: 32,
-    };
-  }
 
+  state = {
+    numberOfEvents: 32,
+  };
   // when user chnages the number of events to be shown
-  componentDidMount() {
-    this.mounted = true;
-    getEvents().then((events) => {
-      this.setState({
-        events, locations: extractLocations(events)
-      });
-    });
-  }
+  // we need to have function which handle the changing value of the input
+  changeNum = (value) => {
+    this.setState({ numberOfEvents: value });
+    this.props.updateNumberOfEvents(value);
+  };
 
-  componentWillUnmount() {
-    this.mounted = false;
+  componentDidMount() {
+    this.setState({ numberOfEvents: this.props.num || 32 });
   }
 
   render() {
+    const { numberOfEvents } = this.state;
+
     return (
-      <div className="NumberOfEvents">
-        <input
-          className="number"
-          type="number"
-          onChange={(e) => this.setState({ numberOfEvents: e.target.value })}
-          value={this.state.numberOfEvents}
-        />
-        <h3 className="numOfEvent-h3">Number of Events:</h3>
-        <ul className="event suggestions"></ul>
+      <div>
+        <label>
+          Number of events
+          <input
+            className="num"
+            type="number"
+            value={numberOfEvents}
+            onChange={(event) => this.changeNum(event.target.value)}
+          ></input>
+        </label>
       </div>
     );
   }

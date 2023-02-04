@@ -1,14 +1,14 @@
 import React, { Component } from "react";
 import Event from "./Event";
-import "./App.css";
 
 class EventList extends Component {
   render() {
-    // rendering list of events using events props
     const { events } = this.props;
+    // rendering list of events using events props
+
     return (
       <ul className="EventList">
-        {events?.map((event) => (
+        {events.map((event) => (
           <li key={event.id}>
             <Event event={event} />
           </li>
