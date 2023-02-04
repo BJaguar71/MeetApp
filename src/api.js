@@ -17,6 +17,7 @@ export const extractLocations = (event) => {
 };
 
 // define a function to check the validity of the access token
+// export it to could use it outside this file 
 export const checkToken = async (accessToken) => {
   // if it was unvalid then redirect the user to the google authorization screen via an ajax request
   const result = await fetch(
