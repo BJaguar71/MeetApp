@@ -15,7 +15,7 @@ describe("<NumberOfEvents /> component", () => {
   });
 
   test("the input should have a default value of 32", () => {
-    expect(NumberOfEventsWrapper.find("input.num").prop("type")).toBe("number");
+    expect(NumberOfEventsWrapper.find("input.number").prop("type")).toBe("number");
     expect(NumberOfEventsWrapper.state("numberOfEvents")).toBe(32);
   });
 
@@ -28,7 +28,7 @@ describe("<NumberOfEvents /> component", () => {
 
   test("input should change on user input", () => {
     expect(NumberOfEventsWrapper.state("numberOfEvents")).toBe(32);
-    NumberOfEventsWrapper.find("input.num").simulate("change", {
+    NumberOfEventsWrapper.find("input.number").simulate("change", {
       target: { value: 12 },
     });
     expect(NumberOfEventsWrapper.state("numberOfEvents")).toBe(12);
