@@ -10,8 +10,10 @@ class NumberOfEvents extends Component {
   // when user chnages the number of events to be shown
   // we need to have function which handle the changing value of the input
   changeNum = (value) => {
-    this.setState({ numberOfEvents: value });
-    this.props.updateNumberOfEvents(value);
+    if (0 < value && value <= 32) {
+      this.setState({ numberOfEvents: value });
+      this.props.updateNumberOfEvents(value);
+    }
   };
 
   componentDidMount() {
@@ -24,7 +26,7 @@ class NumberOfEvents extends Component {
     return (
       <div className="NumberOfEvents">
         <label>
-          Number of events
+          <p className="numberOfCity">Number of events</p>
           <input
             className="number"
             type="number"

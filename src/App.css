@@ -25,18 +25,24 @@ html {
   border-radius: 20%;
   padding: 8px;
   height: 40px;
-  width: 40px;
+  width: 250px;
 }
 
 .numOfEvent {
   color: #D9D9D9;
 }
 
-div.NumberOfEvents {
-  padding: 10%;
+/* CitySearch Styling  */
+p.chooseCity{
+  font-size: 20px;
+  font-weight: bold;
 }
 
-/* CitySearch Styling  */
+p.numberOfCity{
+  font-size: 20px;
+  font-weight: bold;
+}
+
 .city {
   border-radius: 10px;
   height: 50px;
