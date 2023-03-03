@@ -1,7 +1,7 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:500);
 
 html {
-  background-color: #b695b4;
+  background-color: #d5b9d3;
 }
 
 .App * {
@@ -155,4 +155,9 @@ input[type="number"] {
   border-radius: 4px;
   outline: none;
   cursor: pointer;
+}
+.Alert {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: medium;
+  font-weight: bold;
 }

@@ -5,11 +5,14 @@ import "./App.css";
 import { mockData } from "./mock-data";
 import { extractLocations } from "./api";
 
+import { InfoAlert } from "./Alert";
+
 class CitySearch extends Component {
   state = {
     query: "",
     suggestions: [],
-    showSuggestions: undefined,
+    showSuggestions: false,
+    infoText: ""
   };
 
   // defining event handler for input for change event
@@ -19,15 +22,26 @@ class CitySearch extends Component {
     // filter the state value of suggestions and use the result as the new value for the state
     // using this.props.locations within the func bc it will be passed from the App Component
 
-    const locations = extractLocations(mockData);
+   const locations = extractLocations(mockData);
 
-    const suggestions = locations.filter((location) => {
+    this.setState({showSuggestions: true});
+    const suggestions = this.props.locations.filter((location) => {
       return location.toUpperCase().indexOf(value.toUpperCase()) > -1;
     });
-    this.setState({
-      query: value,
-      suggestions,
-    });
+
+    // check if the input value given by user meets the creterias 
+    if (suggestions.length === 0) {
+      this.setState({
+        query: value, 
+        infoText: "We cannot find the city you're looking for. Please try another city",
+      });
+    } else {
+      return this.setState({
+        query: value,
+        suggestions,
+        infoText: ""
+      });
+    }
   };
 
   // new function to use in the click event handler of the suggestion list item
@@ -44,6 +58,7 @@ class CitySearch extends Component {
   render() {
     return (
       <div className="CitySearch">
+        <InfoAlert text={this.state.infoText} />
         <p className="chooseCity">City</p>
         <input
           type="text"
