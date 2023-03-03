@@ -30,7 +30,13 @@ class InfoAlert extends Alert {
   }
 }
 
-
+// ErrorAlert to be added to the NumberOfEvents component's render method
+class ErrorAlert extends Alert {
+  constructor(props){
+    super(props);
+    this.color = "#971902";
+  }
+}
 
 
 
