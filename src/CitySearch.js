@@ -5,6 +5,8 @@ import "./App.css";
 import { mockData } from "./mock-data";
 import { extractLocations } from "./api";
 
+import { InfoAlert } from "./Alert";
+
 class CitySearch extends Component {
   state = {
     query: "",
@@ -19,9 +21,10 @@ class CitySearch extends Component {
     // filter the state value of suggestions and use the result as the new value for the state
     // using this.props.locations within the func bc it will be passed from the App Component
 
-    const locations = extractLocations(mockData);
+   const locations = extractLocations(mockData);
 
-    const suggestions = locations.filter((location) => {
+    this.setState({showSuggestions: true});
+    const suggestions = this.props.locations.filter((location) => {
       return location.toUpperCase().indexOf(value.toUpperCase()) > -1;
     });
     this.setState({
