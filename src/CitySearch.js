@@ -11,7 +11,8 @@ class CitySearch extends Component {
   state = {
     query: "",
     suggestions: [],
-    showSuggestions: undefined,
+    showSuggestions: false,
+    infoText: ""
   };
 
   // defining event handler for input for change event
@@ -41,11 +42,6 @@ class CitySearch extends Component {
         infoText: ""
       });
     }
-    this.setState({
-      query: value,
-      suggestions,
-      infoText: ""
-    });
   };
 
   // new function to use in the click event handler of the suggestion list item
