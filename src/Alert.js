@@ -23,7 +23,7 @@ class Alert extends Component {
   }
 }
 
-// InfoAlert subclass 
+// InfoAlert subclass to be added to the CirtSearch component's render method
 class InfoAlert extends Alert {
   constructor(props) {
     super(props);
