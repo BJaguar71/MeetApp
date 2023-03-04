@@ -51,7 +51,7 @@ const getToken = async (code) => {
   const encodeCode = encodeURIComponent(code);
   const { access_token } = await fetch(
     "https://5bsexv41pb.execute-api.eu-central-1.amazonaws.com/dev/api/token/" +
-      encodeCode
+    encodeCode
   )
     .then((res) => {
       return res.json();
@@ -77,7 +77,7 @@ export const getEvents = async (events) => {
   if (!navigator.onLine) {
     const data = localStorage.getItem("lastEvents");
     NProgress.done();
-    return data?JSON.parse(events).events:[];;
+    return data ? JSON.parse(events).events : [];;
   }
 
   // check if the user has access token
