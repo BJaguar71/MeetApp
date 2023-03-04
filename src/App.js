@@ -5,6 +5,7 @@ import CitySearch from "./CitySearch";
 import NumberOfEvents from "./NumberOfEvents";
 import { extractLocations, getEvents, checkToken, getAccessToken } from "./api";
 import "./nprogress.css";
+import { WarningAlert } from "./Alert";
 
 
 class App extends Component {
@@ -13,6 +14,7 @@ class App extends Component {
     locations: [],
     numberOfEvents: 32,
     showWelcomeScreen: undefined,
+    infoText: ""
   };
 
   updateEvents = (location) => {
@@ -39,6 +41,11 @@ class App extends Component {
   // create componentDidMount to make API call and save the initial data to state:
 
   async componentDidMount() {
+    if(navigator.onLine === false) {
+      this.setState({
+        infoText: "You are offline! Check your internet connection to see upcoming events"
+      });
+    }
     this.mounted = true;
     getEvents().then((events) => {
       if (this.mounted) {
@@ -61,6 +68,7 @@ class App extends Component {
 
     return (
       <div className="App">
+        <WarningAlert text={this.state.infoText}/>
         <div className="filters">
           <CitySearch
             locations={locations}
