@@ -64,7 +64,7 @@ const getToken = async (code) => {
 };
 
 //  define a function to get events asynchronously from the api
-export const getEvents = async () => {
+export const getEvents = async (events) => {
   //
   NProgress.start();
 
@@ -73,9 +73,6 @@ export const getEvents = async () => {
     NProgress.done();
     return mockData;
   }
-
-  //
-  const token = await getAccessToken();
 
   if (token) {
     // remove the code from url once the request is done
@@ -98,6 +95,15 @@ export const getEvents = async () => {
     NProgress.done();
     return result.data.events;
   }
+
+  // if user is offline, load the events from localstorage
+  if (!navigator.onLine) {
+    const data = localStorage.getItem("lastEvents");
+    NProgress.done();
+    return data?JSON.parse(events).events:[];;
+  }
+  //
+  const token = await getAccessToken();
 };
 
 // define an async function to get the access token
