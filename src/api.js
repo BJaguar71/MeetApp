@@ -64,7 +64,7 @@ const getToken = async (code) => {
 };
 
 //  define a function to get events asynchronously from the api
-export const getEvents = async (events) => {
+export const getEvents = async () => {
   //
   NProgress.start();
 
@@ -73,14 +73,8 @@ export const getEvents = async (events) => {
     NProgress.done();
     return mockData;
   }
-  // check if there is no internet connection then get data from local storage
-  if (!navigator.onLine) {
-    const data = localStorage.getItem("lastEvents");
-    NProgress.done();
-    return data?JSON.parse(events).events:[];;
-  }
 
-  // check if the user has access token
+  //
   const token = await getAccessToken();
 
   if (token) {
