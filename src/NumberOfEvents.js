@@ -24,10 +24,6 @@ class NumberOfEvents extends Component {
         infoText: ""
       });
     }
-    // if (0 < value && value <= 32) {
-    //   this.setState({ numberOfEvents: value });
-    //   this.props.updateNumberOfEvents(value);
-    // }
   };
 
   componentDidMount() {
