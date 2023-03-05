@@ -80,7 +80,7 @@ export const getEvents = async (events) => {
 
     NProgress.done();
     console.log(JSON.parse(data), "data");
-    return data ? JSON.parse(data).events : [];
+    return data ? JSON.parse(data) : [];
   }
 
   const token = await getAccessToken();
