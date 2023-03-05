@@ -11,13 +11,14 @@ import axios from "axios";
 import NProgress from "nprogress";
 
 export const extractLocations = (event) => {
+  console.log(event, "event in api");
   let extractLocations = event.map((event) => event.location);
   let locations = [...new Set(extractLocations)];
   return locations;
 };
 
 // define a function to check the validity of the access token
-// export it to could use it outside this file 
+// export it to could use it outside this file
 export const checkToken = async (accessToken) => {
   // if it was unvalid then redirect the user to the google authorization screen via an ajax request
   const result = await fetch(
@@ -51,7 +52,7 @@ const getToken = async (code) => {
   const encodeCode = encodeURIComponent(code);
   const { access_token } = await fetch(
     "https://5bsexv41pb.execute-api.eu-central-1.amazonaws.com/dev/api/token/" +
-    encodeCode
+      encodeCode
   )
     .then((res) => {
       return res.json();
@@ -66,13 +67,13 @@ const getToken = async (code) => {
 //  define a function to get events asynchronously from the api
 export const getEvents = async (events) => {
   //
-  NProgress.start();
+  // NProgress.start();
 
-  // define a condition to check if the request is made through localhost (fetch data from mockdata file) or through the app url (fetch data from GGL api)
-  if (window.location.href.startsWith("http://localhost")) {
-    NProgress.done();
-    return mockData;
-  }
+  //define a condition to check if the request is made through localhost (fetch data from mockdata file) or through the app url (fetch data from GGL api)
+  // if (window.location.href.startsWith("http://localhost")) {
+  //   NProgress.done();
+  //   return mockData;
+  // }
 
   if (token) {
     // remove the code from url once the request is done
@@ -92,15 +93,15 @@ export const getEvents = async (events) => {
       localStorage.setItem("locations", JSON.stringify(locations));
     }
 
-    NProgress.done();
+    //NProgress.done();
     return result.data.events;
   }
 
   // if user is offline, load the events from localstorage
   if (!navigator.onLine) {
     const data = localStorage.getItem("lastEvents");
-    NProgress.done();
-    return data?JSON.parse(events).events:[];;
+    //NProgress.done();
+    return data ? JSON.parse(events).events : [];
   }
   //
   const token = await getAccessToken();
