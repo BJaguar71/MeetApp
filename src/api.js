@@ -11,7 +11,6 @@ import axios from "axios";
 import NProgress from "nprogress";
 
 export const extractLocations = (event) => {
-  console.log(event, "event in api");
   let extractLocations = event.map((event) => event.location);
   let locations = [...new Set(extractLocations)];
   return locations;
@@ -67,13 +66,13 @@ const getToken = async (code) => {
 //  define a function to get events asynchronously from the api
 export const getEvents = async (events) => {
   //
-  // NProgress.start();
+  NProgress.start();
 
-  //define a condition to check if the request is made through localhost (fetch data from mockdata file) or through the app url (fetch data from GGL api)
-  // if (window.location.href.startsWith("http://localhost")) {
-  //   NProgress.done();
-  //   return mockData;
-  // }
+  // define a condition to check if the request is made through localhost (fetch data from mockdata file) or through the app url (fetch data from GGL api)
+  if (window.location.href.startsWith("http://localhost")) {
+    NProgress.done();
+    return mockData;
+  }
 
   if (token) {
     // remove the code from url once the request is done
@@ -93,14 +92,14 @@ export const getEvents = async (events) => {
       localStorage.setItem("locations", JSON.stringify(locations));
     }
 
-    //NProgress.done();
+    NProgress.done();
     return result.data.events;
   }
 
   // if user is offline, load the events from localstorage
   if (!navigator.onLine) {
     const data = localStorage.getItem("lastEvents");
-    //NProgress.done();
+    NProgress.done();
     return data ? JSON.parse(events).events : [];
   }
   //
