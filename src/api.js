@@ -74,6 +74,7 @@ export const getEvents = async (events) => {
     NProgress.done();
     return mockData;
   }
+  const token = await getAccessToken();
 
   if (token) {
     // remove the code from url once the request is done
@@ -82,19 +83,23 @@ export const getEvents = async (events) => {
     const url =
       "https://5bsexv41pb.execute-api.eu-central-1.amazonaws.com/dev/api/get-events/" +
       token;
+    try {
+      const result = await axios.get(url);
 
-    const result = await axios.get(url);
+      if (result.data) {
+        let locations = extractLocations(result.data.events);
 
-    if (result.data) {
-      let locations = extractLocations(result.data.events);
+        localStorage.setItem("lastEvents", JSON.stringify(result.data));
 
-      localStorage.setItem("lastEvents", JSON.stringify(result.data));
+        localStorage.setItem("locations", JSON.stringify(locations));
+      }
 
-      localStorage.setItem("locations", JSON.stringify(locations));
+      NProgress.done();
+      return result.data.events;
+    } catch (error) {
+      NProgress.done();
+      console.error(error.response, "unable to get events");
     }
-
-    NProgress.done();
-    return result.data.events;
   }
 
   // if user is offline, load the events from localstorage
@@ -104,7 +109,6 @@ export const getEvents = async (events) => {
     return data ? JSON.parse(events).events : [];
   }
   //
-  const token = await getAccessToken();
 };
 
 // define an async function to get the access token

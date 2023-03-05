@@ -41,11 +41,11 @@ class App extends Component {
     const searchParams = new URLSearchParams(window.location.search);
     const code = searchParams.get("code");
     this.setState({ showWelcomeScreen: !(code || isTokenValid) });
+    console.log("getEevents", code, accessToken);
 
     if ((code || isTokenValid) && this.mounted) {
       getEvents().then((events) => {
         if (this.mounted) {
-          console.log(events, "getEevents", code, accessToken);
           this.setState({
             events,
             locations: extractLocations(events),
