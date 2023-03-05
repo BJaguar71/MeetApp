@@ -11,7 +11,6 @@ import axios from "axios";
 import NProgress from "nprogress";
 
 export const extractLocations = (event) => {
-  console.log(event, "event data");
   let extractLocations = event.map((event) => event.location);
   let locations = [...new Set(extractLocations)];
   return locations;
@@ -106,7 +105,7 @@ export const getEvents = async (events) => {
   if (!navigator.onLine) {
     const data = localStorage.getItem("lastEvents");
     NProgress.done();
-    return data ? JSON.parse(events).events : [];
+    return data ? JSON.parse(data).events : [];
   }
   //
 };
