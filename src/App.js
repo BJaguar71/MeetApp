@@ -40,11 +40,19 @@ class App extends Component {
     const isTokenValid = (await checkToken(accessToken)).error ? false : true;
     const searchParams = new URLSearchParams(window.location.search);
     const code = searchParams.get("code");
-    this.setState({ showWelcomeScreen: !(code || isTokenValid) });
+    // If code exists, or if token is valid, user is authorized
+    const authorized = code || isTokenValid;
+
+    // Check if localhost
+    const isLocal =
+      window.location.href.indexOf("localhost") > -1 ? true : false;
+    this.setState({ showWelcomeScreen: !authorized && !isLocal });
     console.log("getEevents", code, accessToken);
 
     if ((code || isTokenValid) && this.mounted) {
       getEvents().then((events) => {
+        console.log(events, "checking offline data");
+
         if (this.mounted) {
           this.setState({
             events,
@@ -58,7 +66,6 @@ class App extends Component {
   updateEvents = (location) => {
     getEvents().then((events) => {
       //  filteres events that their location is equal to selected location
-
       const locationEvents =
         location === "all"
           ? events

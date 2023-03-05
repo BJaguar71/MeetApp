@@ -73,6 +73,8 @@ export const getEvents = async (events) => {
     NProgress.done();
     return mockData;
   }
+  // if user is offline, load the events from localstorage
+
   if (!navigator.onLine) {
     const data = localStorage.getItem("lastEvents");
 
@@ -108,8 +110,6 @@ export const getEvents = async (events) => {
       console.error(error.response, "unable to get events");
     }
   }
-
-  // if user is offline, load the events from localstorage
 
   //
 };
