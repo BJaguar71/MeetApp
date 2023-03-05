@@ -49,7 +49,7 @@ class App extends Component {
     this.setState({ showWelcomeScreen: !authorized && !isLocal });
     console.log("getEevents", code, accessToken);
 
-    if ((code || isTokenValid) && this.mounted) {
+    if ((authorized || isLocal) && this.mounted) {
       getEvents().then((events) => {
         console.log(events, "checking offline data");
 
@@ -97,7 +97,7 @@ class App extends Component {
 
     // assigned the state into a var 'events' to simplify the value of 'event' prop
     const { events, locations, showWelcomeScreen } = this.state;
-
+    console.log(events, "events inside the app");
     return (
       <div className="App">
         <WarningAlert text={this.state.infoText} />
