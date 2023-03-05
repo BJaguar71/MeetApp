@@ -37,7 +37,10 @@ class App extends Component {
     const accessToken = localStorage.getItem("access_token");
     // verify the token
     // If there’s an error in the object returned by checkToken(), the variable isTokenValid will be assigned with the value false; otherwise, it will be true.
-    const isTokenValid = (await checkToken(accessToken)).error ? false : true;
+    // const isTokenValid = (await checkToken(accessToken)).error ? false : true;
+
+    const tokenCheck = accessToken && (await checkToken(accessToken));
+    const isTokenValid = !accessToken || tokenCheck.error ? false : true;
     const searchParams = new URLSearchParams(window.location.search);
     const code = searchParams.get("code");
     // If code exists, or if token is valid, user is authorized
