@@ -1,14 +1,15 @@
 * {
   box-sizing: border-box;
 }
-div.WelcomeScreen {
+.WelcomeScreen {
+  position: fixed;
   display: flex;
   flex-direction: column;
-  position:static;
   width: 100%;
   height: 100%;
   background: #3f2c3f;
   align-items: center;
+  padding-top: 20%;
 }
 
 .login-button {
@@ -73,7 +74,7 @@ a {
   color: #6b97ff
 }
 h1.welcome {
-  color: #ff6b6b;  
+  color: #d06bff;  
 }
 h4 {
  color: #ffe1a8; 
