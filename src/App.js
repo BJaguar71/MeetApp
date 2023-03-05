@@ -20,12 +20,20 @@ class App extends Component {
 
   async componentDidMount() {
     this.mounted = true;
-    if (!navigator.onLine) {
-      this.setState({
-        infoText: "You are offline! Check your internet connection to see upcoming events"
-      });
-    }
-
+    // warning alert for internet connection
+    // if (!navigator.onLine) {
+    //   this.setState({
+    //     infoText: "You are offline! Check your internet connection to see upcoming events"
+    //   });
+    // } else {
+    //   return this.setState({
+    //     events: [],
+    //     locations: [],
+    //     numberOfEvents: 32,
+    //     showWelcomeScreen: undefined,
+    //     infoText: ""
+    //   });
+    // }
     // get the token from localStorage
     const accessToken = localStorage.getItem('access_token');
     // verify the token 
@@ -40,7 +48,7 @@ class App extends Component {
       getEvents().then((events) => {
         if (this.mounted) {
           this.setState({
-            events: events.slice(0, this.state.numberOfEvents),
+            events,
             locations: extractLocations(events)
           });
         }
@@ -102,7 +110,7 @@ class App extends Component {
           />
         </div>
         <EventList events={events} />
-        <WelcomeScreen showWelcomeScreen={false}
+        <WelcomeScreen showWelcomeScreen={showWelcomeScreen}
           getAccessToken={() => { getAccessToken() }} />
       </div>
     );
