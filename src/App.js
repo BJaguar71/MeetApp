@@ -49,7 +49,7 @@ class App extends Component {
     // Check if localhost
     const isLocal =
       window.location.href.indexOf("localhost") > -1 ? true : false;
-    this.setState({ showWelcomeScreen: !authorized && !isLocal });
+    this.setState({ showWelcomeScreen: !(code || isTokenValid) });
     console.log("getEevents", code, accessToken);
 
     if ((authorized || isLocal) && this.mounted) {
@@ -95,8 +95,9 @@ class App extends Component {
   }
 
   render() {
-    if (this.state.showWelcomeScreen === undefined)
-      return <div className="App" />;
+    if (this.state.showWelcomeScreen === undefined) {
+      return <div className="App"></div>;
+    }
 
     // assigned the state into a var 'events' to simplify the value of 'event' prop
     const { events, locations, showWelcomeScreen } = this.state;
