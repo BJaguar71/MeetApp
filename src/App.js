@@ -52,10 +52,7 @@ class App extends Component {
     console.log("getEevents", code, accessToken);
 
     if (authorized && this.mounted) {
-      console.log("should load the data");
       getEvents().then((events) => {
-        console.log(events, "checking offline data");
-
         if (this.mounted) {
           this.setState({
             events,
@@ -63,8 +60,6 @@ class App extends Component {
           });
         }
       });
-    } else {
-      console.log("should not loaded now");
     }
   }
 

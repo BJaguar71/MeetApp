@@ -79,7 +79,7 @@ export const getEvents = async (events) => {
     const data = localStorage.getItem("lastEvents");
 
     NProgress.done();
-    console.log(JSON.parse(data).events, JSON.parse(data), "data");
+    // console.log(JSON.parse(data).events, JSON.parse(data), "data");
     return data ? JSON.parse(data).events : [];
   }
 
