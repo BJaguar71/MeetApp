@@ -54,7 +54,7 @@ class App extends Component {
     this.setState({ showWelcomeScreen: !authorized || !isLocal });
     console.log("getEevents", code, accessToken);
 
-    if (this.mounted) {
+    if ((authorized || isLocal) && this.mounted) {
       getEvents().then((events) => {
         console.log(events, "checking offline data");
 
