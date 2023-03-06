@@ -19,12 +19,14 @@ class App extends Component {
 
   async componentDidMount() {
     this.mounted = true;
-    // warning alert for internet connection
-    // if (!navigator.onLine) {
-    //   this.setState({
-    //     infoText: "You are offline! Check your internet connection to see upcoming events"
-    //   });
-    // } else {
+    //  warning alert for internet connection
+    if (!navigator.onLine) {
+      this.setState({
+        infoText:
+          "You are offline! Check your internet connection to see upcoming events",
+      });
+    }
+    // else {
     //   return this.setState({
     //     events: [],
     //     locations: [],
@@ -52,7 +54,7 @@ class App extends Component {
     this.setState({ showWelcomeScreen: !authorized || !isLocal });
     console.log("getEevents", code, accessToken);
 
-    if ((authorized || isLocal) && this.mounted) {
+    if (this.mounted) {
       getEvents().then((events) => {
         console.log(events, "checking offline data");
 
@@ -98,27 +100,10 @@ class App extends Component {
     // assigned the state into a var 'events' to simplify the value of 'event' prop
     const { events, locations, showWelcomeScreen } = this.state;
     if (this.state.showWelcomeScreen === undefined) {
-      return (
-        <div className="App">
-          <WarningAlert text={this.state.infoText} />
-
-          <div className="filters">
-            <CitySearch
-              locations={locations}
-              updateEvents={(updatedLocation) => {
-                this.updateEvents(updatedLocation);
-              }}
-            />
-            <NumberOfEvents
-              num={this.state.numberOfEvents}
-              updateNumberOfEvents={(num) => this.updateNumberOfEvents(num)}
-            />
-          </div>
-          <EventList events={events} />
-        </div>
-      );
+      return <div className="App"></div>;
     }
 
+    console.log(events, "events inside the app");
     return (
       <div className="App">
         <WarningAlert text={this.state.infoText} />
