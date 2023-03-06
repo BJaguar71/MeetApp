@@ -95,7 +95,7 @@ class App extends Component {
 
   render() {
     // assigned the state into a var 'events' to simplify the value of 'event' prop
-    // const { events, locations, showWelcomeScreen } = this.state;
+    const { events, locations, showWelcomeScreen } = this.state;
     // if (this.state.showWelcomeScreen === undefined) {
     //   return <div className="App"></div>;
     // }
