@@ -49,7 +49,7 @@ class App extends Component {
     // Check if localhost
     const isLocal =
       window.location.href.indexOf("localhost") > -1 ? true : false;
-    this.setState({ showWelcomeScreen: !(code || isTokenValid) });
+    this.setState({ showWelcomeScreen: authorized || isLocal });
     console.log("getEevents", code, accessToken);
 
     if ((authorized || isLocal) && this.mounted) {
