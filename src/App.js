@@ -48,13 +48,10 @@ class App extends Component {
     // If code exists, or if token is valid, user is authorized
     const authorized = code || isTokenValid;
 
-    // Check if localhost
-    const isLocal =
-      window.location.href.indexOf("localhost") > -1 ? true : false;
-    this.setState({ showWelcomeScreen: !authorized || !isLocal });
+    this.setState({ showWelcomeScreen: !authorized });
     console.log("getEevents", code, accessToken);
 
-    if ((authorized || isLocal) && this.mounted) {
+    if (authorized && this.mounted) {
       getEvents().then((events) => {
         console.log(events, "checking offline data");
 
