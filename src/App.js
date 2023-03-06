@@ -95,13 +95,30 @@ class App extends Component {
   }
 
   render() {
-    if (this.state.showWelcomeScreen === undefined) {
-      return <div className="App"></div>;
-    }
-
     // assigned the state into a var 'events' to simplify the value of 'event' prop
     const { events, locations, showWelcomeScreen } = this.state;
-    console.log(events, "events inside the app");
+    if (this.state.showWelcomeScreen === undefined) {
+      return (
+        <div className="App">
+          <WarningAlert text={this.state.infoText} />
+
+          <div className="filters">
+            <CitySearch
+              locations={locations}
+              updateEvents={(updatedLocation) => {
+                this.updateEvents(updatedLocation);
+              }}
+            />
+            <NumberOfEvents
+              num={this.state.numberOfEvents}
+              updateNumberOfEvents={(num) => this.updateNumberOfEvents(num)}
+            />
+          </div>
+          <EventList events={events} />
+        </div>
+      );
+    }
+
     return (
       <div className="App">
         <WarningAlert text={this.state.infoText} />
