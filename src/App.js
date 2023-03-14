@@ -10,6 +10,7 @@ import WelcomeScreen from './WelcomeScreen';
 import {
   ResponsiveContainer, ScatterChart, Scatter, XAxis, YAxis, CartesianGrid, Tooltip
 } from 'recharts';
+import { mockData } from "./mock-data";
 
 
 class App extends Component {
@@ -24,11 +25,12 @@ class App extends Component {
   async componentDidMount() {
     this.mounted = true;
     // warning alert for internet connection
-    // if (!navigator.onLine) {
-    //   this.setState({
-    //     infoText: "You are offline! Check your internet connection to see upcoming events"
-    //   });
-    // } else {
+    if (!navigator.onLine) {
+      this.setState({
+        infoText: "You are offline! Check your internet connection to see upcoming events"
+      });
+    } 
+    // else {
     //   return this.setState({
     //     events: [],
     //     locations: [],
