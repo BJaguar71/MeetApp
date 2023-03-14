@@ -19,12 +19,14 @@ class App extends Component {
 
   async componentDidMount() {
     this.mounted = true;
-    // warning alert for internet connection
-    // if (!navigator.onLine) {
-    //   this.setState({
-    //     infoText: "You are offline! Check your internet connection to see upcoming events"
-    //   });
-    // } else {
+    //  warning alert for internet connection
+    if (!navigator.onLine) {
+      this.setState({
+        infoText:
+          "You are offline! Check your internet connection to see upcoming events",
+      });
+    }
+    // else {
     //   return this.setState({
     //     events: [],
     //     locations: [],
@@ -46,16 +48,11 @@ class App extends Component {
     // If code exists, or if token is valid, user is authorized
     const authorized = code || isTokenValid;
 
-    // Check if localhost
-    const isLocal =
-      window.location.href.indexOf("localhost") > -1 ? true : false;
-    this.setState({ showWelcomeScreen: !authorized && !isLocal });
+    this.setState({ showWelcomeScreen: !authorized });
     console.log("getEevents", code, accessToken);
 
-    if ((authorized || isLocal) && this.mounted) {
+    if (authorized && this.mounted) {
       getEvents().then((events) => {
-        console.log(events, "checking offline data");
-
         if (this.mounted) {
           this.setState({
             events,
@@ -95,17 +92,18 @@ class App extends Component {
   }
 
   render() {
-    if (this.state.showWelcomeScreen === undefined)
-      return <div className="App" />;
-
     // assigned the state into a var 'events' to simplify the value of 'event' prop
     const { events, locations, showWelcomeScreen } = this.state;
+    // if (this.state.showWelcomeScreen === undefined) {
+    //   return <div className="App"></div>;
+    // }
+
     console.log(events, "events inside the app");
     return (
-      <div className="App">
+      <div>
         <WarningAlert text={this.state.infoText} />
 
-        <div className="filters">
+        <div>
           <CitySearch
             locations={locations}
             updateEvents={(updatedLocation) => {
