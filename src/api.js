@@ -17,7 +17,7 @@ export const extractLocations = (event) => {
 };
 
 // define a function to check the validity of the access token
-// export it to could use it outside this file 
+// export it to could use it outside this file
 export const checkToken = async (accessToken) => {
   // if it was unvalid then redirect the user to the google authorization screen via an ajax request
   const result = await fetch(
@@ -51,7 +51,7 @@ const getToken = async (code) => {
   const encodeCode = encodeURIComponent(code);
   const { access_token } = await fetch(
     "https://5bsexv41pb.execute-api.eu-central-1.amazonaws.com/dev/api/token/" +
-    encodeCode
+      encodeCode
   )
     .then((res) => {
       return res.json();
@@ -73,6 +73,17 @@ export const getEvents = async (events) => {
     NProgress.done();
     return mockData;
   }
+  // if user is offline, load the events from localstorage
+
+  if (!navigator.onLine) {
+    const data = localStorage.getItem("lastEvents");
+
+    NProgress.done();
+    // console.log(JSON.parse(data).events, JSON.parse(data), "data");
+    return data ? JSON.parse(data).events : [];
+  }
+
+  const token = await getAccessToken();
 
   if (token) {
     // remove the code from url once the request is done
@@ -81,29 +92,26 @@ export const getEvents = async (events) => {
     const url =
       "https://5bsexv41pb.execute-api.eu-central-1.amazonaws.com/dev/api/get-events/" +
       token;
+    try {
+      const result = await axios.get(url);
 
-    const result = await axios.get(url);
+      if (result.data) {
+        let locations = extractLocations(result.data.events);
 
-    if (result.data) {
-      let locations = extractLocations(result.data.events);
+        localStorage.setItem("lastEvents", JSON.stringify(result.data));
 
-      localStorage.setItem("lastEvents", JSON.stringify(result.data));
+        localStorage.setItem("locations", JSON.stringify(locations));
+      }
 
-      localStorage.setItem("locations", JSON.stringify(locations));
+      NProgress.done();
+      return result.data.events;
+    } catch (error) {
+      NProgress.done();
+      console.error(error.response, "unable to get events");
     }
-
-    NProgress.done();
-    return result.data.events;
   }
 
-  // if user is offline, load the events from localstorage
-  if (!navigator.onLine) {
-    const data = localStorage.getItem("lastEvents");
-    NProgress.done();
-    return data?JSON.parse(events).events:[];;
-  }
   //
-  const token = await getAccessToken();
 };
 
 // define an async function to get the access token

@@ -31,6 +31,7 @@ o.svg"
         </div>
       </div>
       <a
+        className='privacy-policy'
         href="https://meet-me-there.netlify.app/privacy.html"
         rel="nofollow noopener"
       >

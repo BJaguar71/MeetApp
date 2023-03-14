@@ -19,7 +19,7 @@ class App extends Component {
     locations: [],
     numberOfEvents: 32,
     showWelcomeScreen: undefined,
-    infoText: ""
+    infoText: "",
   };
 
   async componentDidMount() {
@@ -40,21 +40,27 @@ class App extends Component {
     //   });
     // }
     // get the token from localStorage
-    const accessToken = localStorage.getItem('access_token');
-    // verify the token 
+    const accessToken = localStorage.getItem("access_token");
+    // verify the token
     // If there’s an error in the object returned by checkToken(), the variable isTokenValid will be assigned with the value false; otherwise, it will be true.
-    const isTokenValid = (await checkToken(accessToken)).error ? false :
-      true;
+    // const isTokenValid = (await checkToken(accessToken)).error ? false : true;
+
+    const tokenCheck = accessToken && (await checkToken(accessToken));
+    const isTokenValid = !accessToken || tokenCheck.error ? false : true;
     const searchParams = new URLSearchParams(window.location.search);
     const code = searchParams.get("code");
-    this.setState({ showWelcomeScreen: !(code || isTokenValid) });
+    // If code exists, or if token is valid, user is authorized
+    const authorized = code || isTokenValid;
 
-    if ((code || isTokenValid) && this.mounted) {
+    this.setState({ showWelcomeScreen: !authorized });
+    console.log("getEevents", code, accessToken);
+
+    if (authorized && this.mounted) {
       getEvents().then((events) => {
         if (this.mounted) {
           this.setState({
             events,
-            locations: extractLocations(events)
+            locations: extractLocations(events),
           });
         }
       });
@@ -64,7 +70,6 @@ class App extends Component {
   updateEvents = (location) => {
     getEvents().then((events) => {
       //  filteres events that their location is equal to selected location
-
       const locationEvents =
         location === "all"
           ? events
@@ -84,7 +89,6 @@ class App extends Component {
   }
   // create componentDidMount to make API call and save the initial data to state:
 
-
   // use componentWillUnmount to avoide the component to be unmounted before the API call is finished
 
   componentWillUnmount() {
@@ -103,17 +107,18 @@ class App extends Component {
   };
 
   render() {
-
-    if (this.state.showWelcomeScreen === undefined) return <div
-      className="App" />
-
     // assigned the state into a var 'events' to simplify the value of 'event' prop
     const { events, locations, showWelcomeScreen } = this.state;
+    // if (this.state.showWelcomeScreen === undefined) {
+    //   return <div className="App"></div>;
+    // }
 
+    console.log(events, "events inside the app");
     return (
-      <div className="App">
+      <div>
         <WarningAlert text={this.state.infoText} />
-        <div className="filters">
+
+        <div>
           <CitySearch
             locations={locations}
             updateEvents={(updatedLocation) => {
@@ -143,8 +148,12 @@ class App extends Component {
           </ScatterChart>
         </ResponsiveContainer>
         <EventList events={events} />
-        <WelcomeScreen showWelcomeScreen={showWelcomeScreen}
-          getAccessToken={() => { getAccessToken() }} />
+        <WelcomeScreen
+          showWelcomeScreen={showWelcomeScreen}
+          getAccessToken={() => {
+            getAccessToken();
+          }}
+        />
       </div>
     );
   }
