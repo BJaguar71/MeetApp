@@ -91,6 +91,17 @@ class App extends Component {
     this.mounted = false;
   }
 
+  // get the number of events in each city
+  getData = () => {
+    const { locations, events } = this.state;
+    const data = locations.map((location) => {
+      const number = events.filter((event) => event.location === location).length;
+      const city = location.split(", ").shift();
+      return { city, number };
+    });
+    return data;
+  };
+
   render() {
 
     if (this.state.showWelcomeScreen === undefined) return <div
