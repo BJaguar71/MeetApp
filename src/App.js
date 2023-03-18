@@ -103,31 +103,32 @@ class App extends Component {
       const city = location.split(", ").shift();
       return { city, number };
     });
+    console.log(data);
     return data;
   };
 
   render() {
     // assigned the state into a var 'events' to simplify the value of 'event' prop
-    const { events, locations, showWelcomeScreen } = this.state;
+    const { events, locations, showWelcomeScreen, numberOfEvents} = this.state;
     // if (this.state.showWelcomeScreen === undefined) {
     //   return <div className="App"></div>;
     // }
 
     console.log(events, "events inside the app");
     return (
-      <div>
+      <div className="App">
         <WarningAlert text={this.state.infoText} />
 
         <div>
+          <h1>Meet Me There!</h1>
+          <h4>Choose your nearest city</h4>
           <CitySearch
             locations={locations}
-            updateEvents={(updatedLocation) => {
-              this.updateEvents(updatedLocation);
-            }}
+            updateEvents={this.updateEvents}
           />
           <NumberOfEvents
-            num={this.state.numberOfEvents}
-            updateNumberOfEvents={(num) => this.updateNumberOfEvents(num)}
+            numberOfEvents={numberOfEvents}
+            updateNumberOfEvents={this.updateNumberOfEvents}
           />
         </div>
         <h4>Events in each city</h4>
@@ -148,12 +149,12 @@ class App extends Component {
           </ScatterChart>
         </ResponsiveContainer>
         <EventList events={events} />
-        <WelcomeScreen
+        {/* <WelcomeScreen
           showWelcomeScreen={showWelcomeScreen}
           getAccessToken={() => {
             getAccessToken();
           }}
-        />
+        /> */}
       </div>
     );
   }
