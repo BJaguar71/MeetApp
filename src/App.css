@@ -173,3 +173,8 @@ a.link {
   font-size: medium;
   font-weight: bold;
 }
+
+.logout {
+  background-color: #d06bff;
+  color: #3f2c3f;
+}
