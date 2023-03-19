@@ -1,5 +1,6 @@
 ## Meet App (event finding app)
 Find the events take place around you!
+![Meet App](D:\0-CareerFoundry\tasks\code\MeetApp\public\ezgif.com-video-to-gif (1).gif)
 
 ## Objectives
 - The app is serverless, built with React PWA and works both online and offline
