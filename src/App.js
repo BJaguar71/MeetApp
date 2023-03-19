@@ -108,7 +108,10 @@ class App extends Component {
   };
 
   logOut = () => {
-    localStorage.clear();
+    this.authToken = null;
+    this.user = null;
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
   }
 
   render() {
