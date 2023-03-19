@@ -1,6 +1,6 @@
 ## Meet App (event finding app)
 Find the events take place around you!
-![Meet App gif](public/ezgif.com-video-to-gif%20.gif)
+![Meet App gif](./public/ezgif.com-video-to-gif.gif)
 
 ## Objectives
 - The app is serverless, built with React PWA and works both online and offline
