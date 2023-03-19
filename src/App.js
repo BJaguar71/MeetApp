@@ -124,7 +124,7 @@ class App extends Component {
 
     return (
       <div className="App">
-        <button className="logout" onClick={this.logOut()}>Log Out</button>
+        <button className="logout" onClick={logOut()}>Log Out</button>
         <WarningAlert text={this.state.infoText} />
 
         <div>
