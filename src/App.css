@@ -196,10 +196,13 @@ a.link {
 
 .data-vis-wrapper {
   display: flex;
+  align-items: center;
   flex-direction: column;
 }
-
-.pie-chart.recharts-surface {
-  width: 1300px;
-  height: 400px;
+.data-vis-wrapper .recharts-responsive-container {
+  min-width: 100%;
+  display: flex;
+}
+.recharts-surface {
+  overflow: visible;
 }
