@@ -181,7 +181,6 @@ a.link {
   background-color: #d06bff;
   color: black;
   width: fit-content;
-  box-shadow: 10px 10px 16px -12px rgba(255, 255, 255, 0.75);
   margin: auto;
   padding: 10px;
   text-decoration: none;
@@ -189,7 +188,7 @@ a.link {
 }
 
 .logout:hover:focus {
-  color: #616161;
+  color: white;
   cursor:pointer;
   box-shadow: 0 0.5em 0.5em -0.4em var(--font-color);
   transform: translateY(-0.25em); 
@@ -198,4 +197,5 @@ a.link {
 .data-vis-wrapper {
   width: 100%;
   display: flex;
+  flex-direction: column;
 }
