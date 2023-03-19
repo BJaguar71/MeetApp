@@ -175,13 +175,28 @@ a.link {
 }
 
 .logout {
+  border: none;
+  border-bottom:#616161;
+  border-radius: 3px;
   background-color: #d06bff;
-  color: #3f2c3f;
+  color: black;
   width: fit-content;
+  box-shadow: 10px 10px 16px -12px rgba(255, 255, 255, 0.75);
+  margin: auto;
+  padding: 10px;
+  text-decoration: none;
+  transition: opacity 0.5s;
+}
+
+button,
+.logout:hover:focus {
+  color: #616161;
+  cursor:pointer;
+  box-shadow: 0 0.5em 0.5em -0.4em var(--font-color);
+  transform: translateY(-0.25em); 
 }
 
 .data-vis-wrapper {
   width: 100%;
   display: flex;
-  flex-direction: row;
 }
