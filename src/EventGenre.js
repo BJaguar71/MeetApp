@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { PieChart, Pie, Cell, ResponsiveContainer } from 'recharts';
 
-const EventGenre = ({events}) => {
+const EventGenre = ({ events }) => {
 
   // set the state when there’s events
-  const [ data, setData ] = useState([]);
+  const [data, setData] = useState([]);
 
   // get data
   const getData = () => {
@@ -13,8 +13,8 @@ const EventGenre = ({events}) => {
 
     // map through events and filter events based on their summary and return an array of them
     const data = genres.map((genre) => {
-      const value = events.filter((event) => 
-      event.summary.split(" ").includes(genre)).length;
+      const value = events.filter((event) =>
+        event.summary.split(" ").includes(genre)).length;
 
       return { name: genre, value };
     });
