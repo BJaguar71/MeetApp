@@ -1,7 +1,6 @@
 ## Meet App (event finding app)
 Find the events take place around you!
 
-
 ![Meet App gif](./public/ezgif.com-video-to-gif.gif)
 ![Meet App gif](./public/ezgif.com-video-to-gif-1.gif)
 ![Meet App gif](./public/ezgif.com-video-to-gif-2.gif)
