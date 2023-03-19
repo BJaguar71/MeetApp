@@ -117,6 +117,7 @@ class App extends Component {
 
     return (
       <div className="App">
+        <button onClick={localStorage.clear()}>Log Out</button>
         <WarningAlert text={this.state.infoText} />
 
         <div>
