@@ -30,7 +30,6 @@ const EventGenre = ({ events }) => {
   return (
     <ResponsiveContainer height={400} width={800}>
       <PieChart className="pi-chart">
-      <h4>Event's genre:</h4>
         <Pie 
           data={getData()} 
           cx={350} 
