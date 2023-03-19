@@ -107,12 +107,11 @@ class App extends Component {
     return data;
   };
 
-  logOut = () => {
-    this.authToken = null;
-    this.user = null;
-    localStorage.removeItem('token');
-    localStorage.removeItem('user');
-  }
+  onLoggedOut = () => {
+    localStorage.clear();
+    window.open('/', '_self');
+  };
+
 
   render() {
     // assigned the state into a var 'events' to simplify the value of 'event' prop
@@ -124,7 +123,7 @@ class App extends Component {
 
     return (
       <div className="App">
-        <button className="logout" onClick={logOut()}>Log Out</button>
+        <button className="logout" onClick={this.onLoggedOut}>Log Out</button>
         <WarningAlert text={this.state.infoText} />
 
         <div>
