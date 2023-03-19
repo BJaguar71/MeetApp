@@ -28,7 +28,7 @@ const EventGenre = ({ events }) => {
   useEffect(() => { setData(); }, [events]);
 
   return (
-    <ResponsiveContainer height={400} width={800}>
+    <ResponsiveContainer height={400}>
       <PieChart className="pi-chart">
         <Pie 
           data={getData()} 
