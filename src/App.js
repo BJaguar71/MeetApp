@@ -107,6 +107,10 @@ class App extends Component {
     return data;
   };
 
+  logOut = () => {
+    localStorage.clear();
+  }
+
   render() {
     // assigned the state into a var 'events' to simplify the value of 'event' prop
     const { events, locations, showWelcomeScreen, numberOfEvents } = this.state;
@@ -117,7 +121,7 @@ class App extends Component {
 
     return (
       <div className="App">
-        <button className="logout" onClick={localStorage.clear()}>Log Out</button>
+        <button className="logout" onClick={this.logOut()}>Log Out</button>
         <WarningAlert text={this.state.infoText} />
 
         <div>
