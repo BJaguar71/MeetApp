@@ -170,5 +170,9 @@ And the user should receive a list of upcoming events in that city.
 3. Run `npm run start` to open the app in the localhost port 3000
 
 
-## Video Tutorial 
-[Meet Me There!](https://youtu.be/A_hER31Zjr0)
+## App link & Video Tutorial 
+[Video](https://youtu.be/A_hER31Zjr0)
+[Link])(https://meet-me-there.netlify.app/)
+
+
+
