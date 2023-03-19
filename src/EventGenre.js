@@ -29,7 +29,7 @@ const EventGenre = ({ events }) => {
   return (
     <ResponsiveContainer height={400} >
       <PieChart width={400} height={400} >
-        <Pie data={getData()} cx={200} cy={200} labelLine={false} outerRadius={80} fill="#8884d8" dataKey="value" label={({ name, precent }) => `${name} ${(precent * 100).toFixed(0)}%`}>
+        <Pie data={getData()} cx={200} cy={200} labelLine={false} outerRadius={80} fill="#ffe1a8" dataKey="value" label={({ name, precent }) => `${name} ${(precent * 100).toFixed(0)}%`}>
         </Pie>
       </PieChart>
     </ResponsiveContainer>
