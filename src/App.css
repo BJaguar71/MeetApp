@@ -178,18 +178,3 @@ a.link {
   background-color: #d06bff;
   color: #3f2c3f;
 }
-<<<<<<< Updated upstream
-=======
-
-.logout {
-  background-color: #d06bff;
-  color: #3f2c3f;
-  width: fit-content;
-}
-
-.data-vis-wrapper {
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-}
->>>>>>> Stashed changes
