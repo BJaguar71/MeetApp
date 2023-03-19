@@ -200,7 +200,7 @@ a.link {
   flex-direction: column;
 }
 
-.pie-chart {
+.pie-chart.recharts-surface {
   width: 1300px;
   height: 400px;
 }
