@@ -160,3 +160,15 @@ And the user should receive a list of upcoming events in that city.
 - Google Calendar API
 - AWS lambda
 - Axios
+- Recharts
+- Puppeteer: to do testing process
+
+
+## Setting up development environment:
+1. Clone the repository from [here](https://github.com/BJaguar71/MeetApp)
+2. Run `npm install` to install packages and dependencies.
+3. Run `npm run start` to open the app in the localhost port 3000
+
+
+## Video Tutorial 
+[Meet Me There!](https://youtu.be/A_hER31Zjr0)
