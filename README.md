@@ -1,4 +1,4 @@
-# # Meet App (event finding app)
+## Meet App (event finding app)
 Find the events take place around you!
 
 ## Objectives
