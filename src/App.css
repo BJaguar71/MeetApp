@@ -201,5 +201,6 @@ a.link {
 }
 
 .pie-chart {
-  margin: auto;
+  width: 1300px;
+  height: 400px;
 }
