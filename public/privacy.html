@@ -7,8 +7,9 @@
 
   <style>
     * {
-    box-sizing: border-box;
+      box-sizing: border-box;
     }
+
     html {
       background-color: #616161;
     }
@@ -59,6 +60,26 @@
     nav ul li {
       display: inline;
       margin: 5px;
+    }
+
+    .logout {
+      border: none;
+      border-bottom: #616161;
+      border-radius: 3px;
+      background-color: #d06bff;
+      color: black;
+      width: fit-content;
+      margin: auto;
+      padding: 10px;
+      text-decoration: none;
+      transition: opacity 0.5s;
+    }
+
+    .logout:hover:focus {
+      color: white;
+      cursor: pointer;
+      box-shadow: 0 0.5em 0.5em -0.4em var(--font-color);
+      transform: translateY(-0.25em);
     }
   </style>
 </head>
