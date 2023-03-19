@@ -188,7 +188,6 @@ a.link {
   transition: opacity 0.5s;
 }
 
-button,
 .logout:hover:focus {
   color: #616161;
   cursor:pointer;
