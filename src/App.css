@@ -1,4 +1,6 @@
-@import url(https://fonts.googleapis.com/css?family=Roboto:500);
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@500&display=swap');
+
+
 
 html {
   background-color: #3f2c3f; 
@@ -38,18 +40,21 @@ p.chooseCity {
   font-weight: bold;
   color: white;
   text-align: center;
+  font-family: 'Raleway', sans-serif;
 }
 
 p.numberOfCity {
   font-size: 20px;
   font-weight: bold;
   color: white;
+  font-family: 'Raleway', sans-serif;
 }
 h1 {
   font-size: 60px;
   font-weight: bold;
   color: #ffef8a;
   text-align: center;
+  font-family: 'Raleway', sans-serif;
 }
 .city {
   border-radius: 10px;
@@ -153,6 +158,7 @@ input[type="number"] {
   position: relative;
   color: #ffef8a;
   background-color: #616161;
+  font-family: 'Raleway', sans-serif;
 }
 
 a.link {
@@ -185,6 +191,7 @@ a.link {
   padding: 10px;
   text-decoration: none;
   transition: opacity 0.5s;
+  font-family: 'Raleway', sans-serif;
 }
 
 .logout:hover:focus {
