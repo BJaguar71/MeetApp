@@ -3,7 +3,7 @@
 
 
 html {
-  background-color: #3f2c3f; 
+  background-color: #f5fbf9;
 }
 
 .App * {
@@ -38,7 +38,7 @@ div.NumberOfEvents {
 p.chooseCity {
   font-size: 20px;
   font-weight: bold;
-  color: white;
+  color: #1f2326;
   text-align: center;
   font-family: 'Raleway', sans-serif;
 }
@@ -46,13 +46,13 @@ p.chooseCity {
 p.numberOfCity {
   font-size: 20px;
   font-weight: bold;
-  color: white;
+  color: #1f2326;
   font-family: 'Raleway', sans-serif;
 }
 h1 {
   font-size: 60px;
   font-weight: bold;
-  color: #ffef8a;
+  color: #ff660d;
   text-align: center;
   font-family: 'Raleway', sans-serif;
 }
@@ -74,7 +74,7 @@ b.seeAll {
 }
 
 li.cityResult {
-  color: #ffe1a8;
+  color: #ff660d;
   list-style: none;
   padding: 10%;
 }
@@ -146,7 +146,7 @@ input[type="number"] {
 }
 
 .suggestions > li:hover {
-  background-color: #bcdcdb;
+  background-color: hsl(30, 70%, 85%);;
 }
 
 .event {
@@ -156,8 +156,8 @@ input[type="number"] {
   border: 1px solid #ccc;
   border-radius: 4px;
   position: relative;
-  color: #ffef8a;
-  background-color: #616161;
+  color: #f5fbf9;
+  background-color: #1f2326;
   font-family: 'Raleway', sans-serif;
 }
 
@@ -184,8 +184,8 @@ a.link {
   border: none;
   border-bottom:#616161;
   border-radius: 3px;
-  background-color: #d06bff;
-  color: black;
+  background-color: #1f2326;
+  color: #f5fbf9;
   width: fit-content;
   margin: auto;
   padding: 10px;
@@ -194,11 +194,12 @@ a.link {
   font-family: 'Raleway', sans-serif;
 }
 
-.logout:hover:focus {
-  color: white;
+.logout:hover {
+  color: #1f2326;
   cursor:pointer;
-  box-shadow: 0 0.5em 0.5em -0.4em var(--font-color);
+  box-shadow: 0 0.5em 0.5em -0.4em #1f2326;
   transform: translateY(-0.25em); 
+  background-color: #ff660d;
 }
 
 .data-vis-wrapper {

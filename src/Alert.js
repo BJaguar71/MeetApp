@@ -27,7 +27,7 @@ class Alert extends Component {
 class InfoAlert extends Alert {
   constructor(props) {
     super(props);
-    this.color = '#6b97ff';
+    this.color = '#ff6b6b';
   }
 }
 
